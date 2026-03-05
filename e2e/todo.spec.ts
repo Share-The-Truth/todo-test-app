@@ -18,7 +18,7 @@ test('shows empty list initially', async ({ page }) => {
   await expect(items).toHaveCount(0);
 });
 
-test.fixme('newly added todo appears without page refresh', async ({ page }) => {
+test('newly added todo appears without page refresh', async ({ page }) => {
   await page.goto('/');
   const input = page.locator('#todo-input');
   await input.fill('Buy groceries');

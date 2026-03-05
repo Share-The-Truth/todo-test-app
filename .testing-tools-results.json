@@ -1,0 +1,54 @@
+[
+  {
+    "tool": "run_typecheck",
+    "component": "root",
+    "timestamp": "2026-03-05T17:25:39.191Z",
+    "duration_ms": 1574,
+    "success": true,
+    "summary": {
+      "errors": 0,
+      "diagnostic_count": 0
+    },
+    "failures": []
+  },
+  {
+    "tool": "run_tests",
+    "component": "root",
+    "timestamp": "2026-03-05T17:25:45.804Z",
+    "duration_ms": 3743,
+    "success": true,
+    "summary": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "total": 1
+    },
+    "failures": []
+  },
+  {
+    "tool": "run_e2e",
+    "component": "root",
+    "timestamp": "2026-03-05T17:25:50.743Z",
+    "duration_ms": 1375,
+    "success": false,
+    "summary": {
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0,
+      "services_started": [
+        "root"
+      ],
+      "artifacts_count": 0
+    },
+    "failures": [
+      {
+        "test": "E2E setup/launch",
+        "suite": "playwright",
+        "error": "Error: No projects matched. Available projects: \"\"\n    at filterProjects (/tmp/worktrees/task-bug-fix-d7debc86-1772731470544/node_modules/playwright/lib/runner/projectUtils.js:84:11)\n    at runTests (/tmp/worktrees/task-bug-fix-d7debc86-1772731470544/node_modules/playwright/lib/program.js:208:42)\n    at i.<anonymous> (/tmp/worktrees/task-bug-fix-d7debc86-1772731470544/node_modules/playwright/lib/program.js:70:7)",
+        "file": "",
+        "line": 0
+      }
+    ]
+  }
+]

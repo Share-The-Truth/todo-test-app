@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "governance-board": {
+      "type": "sse",
+      "url": "http://localhost:3000/sse"
+    },
+    "testing-tools": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "/home/pmellor/claude-parallelisation/packages/testing-tools/dist/index.js"
+      ],
+      "env": {
+        "TESTING_TOOLS_WORKTREE": "/tmp/worktrees/task-bug-fix-d7debc86-1772731470544",
+        "TESTING_TOOLS_CONFIG": "{}",
+        "DATABASE_URL": "postgresql://todo:todo@localhost:32807/todos"
+      }
+    }
+  }
+}

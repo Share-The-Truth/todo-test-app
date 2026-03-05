@@ -1,0 +1,99 @@
+[
+  {
+    "tool": "run_typecheck",
+    "component": "root",
+    "timestamp": "2026-03-05T17:55:19.817Z",
+    "duration_ms": 1437,
+    "success": true,
+    "summary": {
+      "errors": 0,
+      "diagnostic_count": 0
+    },
+    "failures": []
+  },
+  {
+    "tool": "run_tests",
+    "component": "root",
+    "timestamp": "2026-03-05T17:55:25.734Z",
+    "duration_ms": 3518,
+    "success": true,
+    "summary": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "total": 1
+    },
+    "failures": []
+  },
+  {
+    "tool": "run_e2e",
+    "component": "root",
+    "timestamp": "2026-03-05T17:55:30.957Z",
+    "duration_ms": 1353,
+    "success": false,
+    "summary": {
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0,
+      "services_started": [
+        "root"
+      ],
+      "artifacts_count": 0
+    },
+    "failures": [
+      {
+        "test": "E2E setup/launch",
+        "suite": "playwright",
+        "error": "Error: No projects matched. Available projects: \"\"\n    at filterProjects (/tmp/worktrees/task-bug-fix-c1f8c6e1-1772732790523/node_modules/playwright/lib/runner/projectUtils.js:84:11)\n    at runTests (/tmp/worktrees/task-bug-fix-c1f8c6e1-1772732790523/node_modules/playwright/lib/program.js:208:42)\n    at i.<anonymous> (/tmp/worktrees/task-bug-fix-c1f8c6e1-1772732790523/node_modules/playwright/lib/program.js:70:7)",
+        "file": "",
+        "line": 0
+      }
+    ]
+  },
+  {
+    "tool": "run_e2e",
+    "component": "root",
+    "timestamp": "2026-03-05T17:55:54.082Z",
+    "duration_ms": 9571,
+    "success": false,
+    "summary": {
+      "passed": 3,
+      "failed": 1,
+      "skipped": 0,
+      "flaky": 0,
+      "services_started": [
+        "root"
+      ],
+      "artifacts_count": 1
+    },
+    "failures": [
+      {
+        "test": "shows empty list initially",
+        "suite": "todo.spec.ts",
+        "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.todo-item')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.todo-item')\u001b[22m\n\u001b[2m    9 × locator resolved to 1 element\u001b[22m\n\u001b[2m      - unexpected value \"1\"\u001b[22m\n",
+        "file": "todo.spec.ts",
+        "line": 15,
+        "browser": "chromium"
+      }
+    ]
+  },
+  {
+    "tool": "run_e2e",
+    "component": "root",
+    "timestamp": "2026-03-05T17:56:59.066Z",
+    "duration_ms": 3524,
+    "success": true,
+    "summary": {
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "services_started": [
+        "root"
+      ],
+      "artifacts_count": 0
+    },
+    "failures": []
+  }
+]

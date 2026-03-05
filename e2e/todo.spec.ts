@@ -1,4 +1,14 @@
 import { test, expect } from '@playwright/test';
+import pg from 'pg';
+
+test.beforeEach(async () => {
+  // Clear the todos table before each test to ensure a clean state
+  const pool = new pg.Pool({
+    connectionString: process.env.DATABASE_URL,
+  });
+  await pool.query('DELETE FROM todos');
+  await pool.end();
+});
 
 test('page loads with correct title', async ({ page }) => {
   await page.goto('/');
@@ -18,7 +28,7 @@ test('shows empty list initially', async ({ page }) => {
   await expect(items).toHaveCount(0);
 });
 
-test.fixme('newly added todo appears without page refresh', async ({ page }) => {
+test('newly added todo appears without page refresh', async ({ page }) => {
   await page.goto('/');
   const input = page.locator('#todo-input');
   await input.fill('Buy groceries');

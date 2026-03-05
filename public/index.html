@@ -55,7 +55,7 @@
         body: JSON.stringify({ text }),
       });
       input.value = '';
-      // BUG: missing loadTodos() call here - new todos don't appear until page refresh
+      await loadTodos();
     }
 
     async function toggleTodo(id) {

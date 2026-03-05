@@ -2,8 +2,7 @@ import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 
 const BASE_URL = `http://localhost:${process.env.PORT || 3005}`;
 
-// These tests expect the server to be running with a valid DATABASE_URL
-// The platform's testcontainers provide the Postgres instance
+// Postgres container and server are started via global-setup.ts
 
 describe('Todo API', () => {
   let createdId: number;

@@ -7,7 +7,7 @@ export default defineConfig({
     baseURL: 'http://localhost:3005',
   },
   webServer: {
-    command: 'tsx src/server.ts',
+    command: 'PORT=3005 tsx src/server.ts',
     port: 3005,
     reuseExistingServer: !process.env.CI,
     timeout: 15000,

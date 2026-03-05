@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo App</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; }
+    h1 { margin-bottom: 20px; }
+    .add-form { display: flex; gap: 8px; margin-bottom: 20px; }
+    .add-form input { flex: 1; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; }
+    .add-form button { padding: 8px 16px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+    .todo-list { list-style: none; }
+    .todo-item { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-bottom: 1px solid #eee; }
+    .todo-item.completed span { text-decoration: line-through; color: #999; }
+    .todo-item span { flex: 1; }
+    .todo-item button { background: none; border: none; cursor: pointer; font-size: 18px; }
+    .delete-btn { color: #dc2626; }
+  </style>
+</head>
+<body>
+  <h1>Todo App</h1>
+  <div class="add-form">
+    <input type="text" id="todo-input" placeholder="What needs to be done?" />
+    <button onclick="addTodo()">Add</button>
+  </div>
+  <ul class="todo-list" id="todo-list"></ul>
+
+  <script>
+    async function loadTodos() {
+      const res = await fetch('/api/todos');
+      const todos = await res.json();
+      const list = document.getElementById('todo-list');
+      list.innerHTML = '';
+      todos.forEach(todo => {
+        const li = document.createElement('li');
+        li.className = 'todo-item' + (todo.completed ? ' completed' : '');
+        li.innerHTML = `
+          <input type="checkbox" ${todo.completed ? 'checked' : ''} onchange="toggleTodo(${todo.id})" />
+          <span>${todo.text}</span>
+          <button class="delete-btn" onclick="deleteTodo(${todo.id})">&#x2715;</button>
+        `;
+        list.appendChild(li);
+      });
+    }
+
+    async function addTodo() {
+      const input = document.getElementById('todo-input');
+      const text = input.value.trim();
+      if (!text) return;
+      await fetch('/api/todos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text }),
+      });
+      input.value = '';
+      // BUG: missing loadTodos() call here - new todos don't appear until page refresh
+    }
+
+    async function toggleTodo(id) {
+      await fetch(`/api/todos/${id}/toggle`, { method: 'PATCH' });
+      await loadTodos();
+    }
+
+    async function deleteTodo(id) {
+      await fetch(`/api/todos/${id}`, { method: 'DELETE' });
+      await loadTodos();
+    }
+
+    loadTodos();
+  </script>
+</body>
+</html>

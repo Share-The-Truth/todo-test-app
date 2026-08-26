@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Between</title>
+<link rel="stylesheet" href="/family/assets/app.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>💛</text></svg>">
+</head>
+<body>
+  <main class="wrap" id="page">
+    <div class="spacer-lg"></div>
+    <p class="brand" style="margin-bottom:18px"><span class="dot"></span>Between</p>
+    <h1 class="page-title">A calm place for the hard conversations.</h1>
+    <p class="lede">Write what you really want to say. We'll help you say it kindly. They'll open it when they're ready.</p>
+
+    <div class="spacer-lg"></div>
+
+    <div class="card">
+      <h2>Welcome back</h2>
+      <form id="login-form" data-testid="login-form" novalidate style="margin-top:16px">
+        <div class="field">
+          <label for="identifier">Email or username</label>
+          <input id="identifier" name="identifier" data-testid="login-identifier" type="text"
+                 autocomplete="username" autocapitalize="none" spellcheck="false" required>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" data-testid="login-password" type="password"
+                 autocomplete="current-password" required>
+        </div>
+        <div class="form-actions">
+          <button class="btn" type="submit" data-testid="login-submit">Log in</button>
+        </div>
+        <div class="error" id="login-error" data-testid="login-error" role="alert"></div>
+      </form>
+    </div>
+
+    <nav class="alt-links">
+      <a href="/family/register.html" data-testid="link-register">Create your family</a>
+      <a href="/family/join.html" data-testid="link-join">I have an invite code</a>
+    </nav>
+  </main>
+
+  <script type="module" src="/family/assets/page-login.js"></script>
+</body>
+</html>

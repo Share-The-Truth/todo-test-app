@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Join your family · Between</title>
+<link rel="stylesheet" href="/family/assets/app.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>💛</text></svg>">
+</head>
+<body>
+  <main class="wrap">
+    <div class="spacer-lg"></div>
+    <a class="brand" href="/family/" style="margin-bottom:18px"><span class="dot"></span>Between</a>
+
+    <!-- 1. looking the code up -->
+    <section id="loading-panel" data-testid="join-loading">
+      <p class="loading">Checking your code…</p>
+    </section>
+
+    <!-- 2. no code in the link: type it in -->
+    <section id="code-panel" data-testid="join-code-panel" hidden>
+      <h1 class="page-title">Got an invite code?</h1>
+      <p class="lede">Type the code your mum or dad gave you.</p>
+      <div class="spacer-lg"></div>
+      <div class="card">
+        <form id="code-form" novalidate>
+          <div class="field">
+            <label for="code">Your invite code</label>
+            <input id="code" name="code" data-testid="join-code-input" type="text"
+                   autocapitalize="none" spellcheck="false" autocomplete="off" placeholder="e.g. K7pQm2Rt" required>
+          </div>
+          <div class="form-actions">
+            <button class="btn" type="submit" data-testid="join-code-submit">Find my family</button>
+          </div>
+          <div class="error" id="code-error" role="alert"></div>
+        </form>
+      </div>
+      <nav class="alt-links">
+        <a href="/family/">I already have an account</a>
+      </nav>
+    </section>
+
+    <!-- 3. the code is no good -->
+    <section id="invalid-panel" data-testid="join-invalid" hidden>
+      <h1 class="page-title">This invite isn't valid anymore</h1>
+      <p class="lede" id="invalid-text">Ask your parent for a new one — it only takes them a moment.</p>
+      <div class="spacer-lg"></div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" type="button" id="try-again">Try another code</button>
+      </div>
+      <nav class="alt-links">
+        <a href="/family/">I already have an account</a>
+      </nav>
+    </section>
+
+    <!-- 4. the good bit -->
+    <section id="join-panel" data-testid="join-panel" hidden>
+      <h1 class="page-title" id="greeting"></h1>
+      <p class="lede" id="greeting-sub"></p>
+      <div class="spacer-lg"></div>
+      <div class="card">
+        <form id="join-form" data-testid="join-form" novalidate>
+          <div class="field">
+            <label for="username" id="username-label">Pick a username</label>
+            <input id="username" name="username" data-testid="join-username" type="text"
+                   autocapitalize="none" spellcheck="false" autocomplete="username" required>
+            <p class="hint" id="username-hint">This is how you log in. No email needed.</p>
+          </div>
+          <div class="field">
+            <label for="password" id="password-label">Password</label>
+            <input id="password" name="password" data-testid="join-password" type="password"
+                   autocomplete="new-password" required>
+            <p class="hint" id="password-hint">At least 6 characters.</p>
+          </div>
+          <div class="field" id="email-field">
+            <label for="email">Email <span class="muted">(optional)</span></label>
+            <input id="email" name="email" data-testid="join-email" type="email"
+                   autocapitalize="none" spellcheck="false" autocomplete="email">
+          </div>
+          <div class="form-actions">
+            <button class="btn" type="submit" data-testid="join-submit">Join my family</button>
+          </div>
+          <div class="error" id="join-error" data-testid="join-error" role="alert"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/family/assets/page-join.js"></script>
+</body>
+</html>

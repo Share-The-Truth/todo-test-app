@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Check in · Between</title>
+<link rel="stylesheet" href="/family/assets/app.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>💛</text></svg>">
+</head>
+<body>
+  <header class="app-header" data-app-header></header>
+  <main class="wrap">
+    <h1 class="page-title" id="checkin-title">How are you feeling?</h1>
+    <p class="lede" id="checkin-sub">Whatever you pick is fine. Your family can see it.</p>
+
+    <form id="checkin-form" data-testid="checkin-form" style="margin-top:20px">
+      <div class="mood-row" id="mood-row" data-testid="mood-row" role="group" aria-label="Pick a mood"></div>
+
+      <div class="field" id="note-field" style="margin-top:20px">
+        <label for="note" id="note-label">Want to say more? (you don't have to)</label>
+        <textarea id="note" data-testid="checkin-note" rows="3"></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn" type="submit" data-testid="checkin-submit">Share how I feel</button>
+      </div>
+      <div class="error" id="checkin-error" data-testid="checkin-error" role="alert"></div>
+    </form>
+
+    <h2 class="section-title">This week in your family</h2>
+    <div id="feed" data-testid="checkin-feed"><p class="loading">Loading…</p></div>
+  </main>
+  <script type="module" src="/family/assets/page-checkin.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Conversation · Between</title>
+<link rel="stylesheet" href="/family/assets/app.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>💛</text></svg>">
+</head>
+<body>
+  <header class="app-header" data-app-header></header>
+  <main class="wrap">
+    <h1 class="page-title" id="thread-title" data-testid="thread-title">You and…</h1>
+    <p class="lede" id="thread-sub">A quiet place, just the two of you.</p>
+
+    <div class="msg-list" id="messages" data-testid="message-list">
+      <p class="loading">Loading…</p>
+    </div>
+
+    <form class="composer" id="composer-form" data-testid="composer">
+      <div id="compose-block">
+        <label class="sr-only" for="compose">Your message</label>
+        <textarea id="compose" data-testid="compose-text" rows="4"></textarea>
+        <div class="btn-row">
+          <button class="btn btn-secondary" type="button" id="help-me" data-testid="help-me-say-it">Help me say it</button>
+        </div>
+      </div>
+
+      <div class="notice" id="reframe-note" data-testid="reframe-note" hidden></div>
+
+      <div id="preview-block" hidden>
+        <div class="preview">
+          <div class="preview-col" id="col-mine" data-testid="col-mine">
+            <h3 id="col-mine-title">What you wrote</h3>
+            <div class="readonly" id="raw-text" data-testid="raw-text"></div>
+          </div>
+          <div class="preview-col chosen" id="col-kinder" data-testid="col-kinder">
+            <h3 id="col-kinder-title">A kinder way</h3>
+            <label class="sr-only" for="reframed">A kinder way to say it</label>
+            <textarea id="reframed" data-testid="reframed-text" rows="4"></textarea>
+          </div>
+        </div>
+        <div class="btn-row" style="margin-top:10px">
+          <button class="btn btn-secondary" type="button" id="use-this" data-testid="use-this">Use this</button>
+          <button class="btn btn-quiet" type="button" id="keep-mine" data-testid="keep-mine">Keep mine as-is</button>
+        </div>
+      </div>
+
+      <div class="hold-block">
+        <span class="label" id="hold-label">When should it land?</span>
+        <div class="pills" id="hold-options" data-testid="hold-options" role="radiogroup" aria-label="When should it land?"></div>
+        <p class="hold-hint" id="hold-hint">Holding gives it a breather — you can edit or take it back while it waits.</p>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn" type="submit" id="send" data-testid="send-message">Send</button>
+      </div>
+      <div class="error" id="compose-error" data-testid="compose-error" role="alert"></div>
+    </form>
+  </main>
+  <script type="module" src="/family/assets/page-thread.js"></script>
+</body>
+</html>

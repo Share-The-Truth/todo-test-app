@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Create your family · Between</title>
+<link rel="stylesheet" href="/family/assets/app.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>💛</text></svg>">
+</head>
+<body>
+  <main class="wrap">
+    <div class="spacer-lg"></div>
+    <a class="brand" href="/family/" style="margin-bottom:18px"><span class="dot"></span>Between</a>
+    <h1 class="page-title">Create your family</h1>
+    <p class="lede">You go first. Once you're in, you can invite your kids with a code — no email address needed for them.</p>
+
+    <div class="spacer-lg"></div>
+
+    <div class="card">
+      <form id="register-form" data-testid="register-form" novalidate>
+        <div class="field">
+          <label for="displayName">Your name</label>
+          <input id="displayName" name="displayName" data-testid="register-name" type="text"
+                 autocomplete="name" placeholder="What your kids call you" required>
+          <p class="hint">This is the name your child will see on your messages.</p>
+        </div>
+        <div class="field">
+          <label for="email">Your email</label>
+          <input id="email" name="email" data-testid="register-email" type="email"
+                 autocomplete="email" autocapitalize="none" spellcheck="false" required>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" data-testid="register-password" type="password"
+                 autocomplete="new-password" required>
+          <p class="hint">At least 6 characters.</p>
+        </div>
+        <div class="field">
+          <label for="familyName">What should we call your family?</label>
+          <input id="familyName" name="familyName" data-testid="register-family" type="text"
+                 placeholder="The Bakers" required>
+        </div>
+        <div class="form-actions">
+          <button class="btn" type="submit" data-testid="register-submit">Create your family</button>
+        </div>
+        <div class="error" id="register-error" data-testid="register-error" role="alert"></div>
+      </form>
+    </div>
+
+    <nav class="alt-links">
+      <a href="/family/">I already have an account</a>
+    </nav>
+  </main>
+
+  <script type="module" src="/family/assets/page-register.js"></script>
+</body>
+</html>

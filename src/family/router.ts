@@ -3,6 +3,9 @@ import type { ErrorRequestHandler } from 'express';
 import cookieParser from 'cookie-parser';
 import authRouter from './auth.js';
 import invitesRouter, { childrenRouter } from './invites.js';
+import threadsRouter, { messagesRouter } from './threads.js';
+import checkinsRouter from './checkins.js';
+import notificationsRouter from './notifications.js';
 
 const router = Router();
 
@@ -12,6 +15,10 @@ router.use(cookieParser());
 router.use('/auth', authRouter);
 router.use('/invites', invitesRouter);
 router.use('/children', childrenRouter);
+router.use('/threads', threadsRouter);
+router.use('/messages', messagesRouter);
+router.use('/checkins', checkinsRouter);
+router.use('/notifications', notificationsRouter);
 
 // Central JSON error handler: any unhandled error from a route (typically
 // forwarded via asyncHandler's next(err)) lands here as 500 JSON instead of

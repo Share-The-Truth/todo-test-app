@@ -5,6 +5,7 @@ import pool from '../db.js';
 import { requireAuth } from './middleware.js';
 import { asyncHandler } from './asyncHandler.js';
 import { expireInviteIfNeeded } from './invites.js';
+import { notify } from './notify.js';
 
 const router = Router();
 
@@ -223,17 +224,6 @@ router.post(
       );
       threadId = threadResult.rows[0].id;
 
-      await client.query(
-        `INSERT INTO family_notifications (user_id, type, title, body, link_path)
-         VALUES ($1, 'invite_accepted', $2, $3, $4)`,
-        [
-          invite.created_by,
-          `${invite.child_display_name} joined!`,
-          `${invite.child_display_name} accepted your invite and is ready to talk.`,
-          `/family/thread.html?id=${threadId}`,
-        ]
-      );
-
       const familyResult = await client.query('SELECT id, name FROM families WHERE id = $1', [invite.family_id]);
       familyRow = familyResult.rows[0];
 
@@ -248,6 +238,13 @@ router.post(
     } finally {
       client.release();
     }
+
+    await notify(invite.created_by, {
+      type: 'invite_accepted',
+      title: `${invite.child_display_name} joined!`,
+      body: `${invite.child_display_name} accepted your invite and is ready to talk.`,
+      linkPath: `/family/thread.html?id=${threadId}`,
+    });
 
     const { token, expiresAt } = await createSession(childId);
     setSessionCookie(res, token, expiresAt);

@@ -83,3 +83,73 @@ export function uniqueEmail(prefix = 'test'): string {
 export function uniqueUsername(prefix = 'user'): string {
   return `${prefix}${uniqueSuffix()}`;
 }
+
+// ---------------------------------------------------------------------
+// Shared "parent + child + thread" fixture builder, reused across the
+// threads/messages, check-ins, and notifications test suites so each file
+// doesn't have to re-implement register -> invite -> join.
+// ---------------------------------------------------------------------
+
+export interface FamilyFixture {
+  parent: { client: CookieJarClient; user: any; family: any };
+  child: { client: CookieJarClient; user: any };
+  threadId: number;
+}
+
+export async function createParentChildThread(
+  overrides: { childDisplayName?: string; ageBand?: string } = {}
+): Promise<FamilyFixture> {
+  const parentClient = createCookieJar();
+  const registerBody = {
+    email: uniqueEmail('parent'),
+    password: 'correct-horse',
+    displayName: 'Test Parent',
+    familyName: 'The Testersons',
+  };
+  const registerRes = await jsonFetch(parentClient, '/api/family/auth/register', {
+    method: 'POST',
+    body: JSON.stringify(registerBody),
+  });
+  if (registerRes.res.status !== 201) {
+    throw new Error(`Failed to register parent fixture: ${registerRes.res.status} ${JSON.stringify(registerRes.body)}`);
+  }
+  const parentUser = registerRes.body.user;
+  const family = registerRes.body.family;
+
+  const inviteRes = await jsonFetch(parentClient, '/api/family/invites', {
+    method: 'POST',
+    body: JSON.stringify({
+      childDisplayName: overrides.childDisplayName ?? 'Maya',
+      ageBand: overrides.ageBand ?? '10-12',
+    }),
+  });
+  if (inviteRes.res.status !== 201) {
+    throw new Error(`Failed to create invite fixture: ${inviteRes.res.status} ${JSON.stringify(inviteRes.body)}`);
+  }
+
+  const childClient = createCookieJar();
+  const joinRes = await jsonFetch(childClient, '/api/family/auth/join', {
+    method: 'POST',
+    body: JSON.stringify({
+      code: inviteRes.body.code,
+      password: 'kid-password-1',
+      username: uniqueUsername('kid'),
+    }),
+  });
+  if (joinRes.res.status !== 201) {
+    throw new Error(`Failed to join fixture: ${joinRes.res.status} ${JSON.stringify(joinRes.body)}`);
+  }
+  const childUser = joinRes.body.user;
+
+  const threadsRes = await jsonFetch(parentClient, '/api/family/threads');
+  const threadEntry = threadsRes.body.find((t: any) => t.otherParticipant.id === childUser.id);
+  if (!threadEntry) {
+    throw new Error('Fixture thread not found after join');
+  }
+
+  return {
+    parent: { client: parentClient, user: parentUser, family },
+    child: { client: childClient, user: childUser },
+    threadId: threadEntry.id,
+  };
+}

@@ -6,6 +6,7 @@ import invitesRouter, { childrenRouter } from './invites.js';
 import threadsRouter, { messagesRouter } from './threads.js';
 import checkinsRouter from './checkins.js';
 import notificationsRouter from './notifications.js';
+import reframeRouter from './reframe/index.js';
 
 const router = Router();
 
@@ -17,6 +18,7 @@ router.use('/invites', invitesRouter);
 router.use('/children', childrenRouter);
 router.use('/threads', threadsRouter);
 router.use('/messages', messagesRouter);
+router.use('/reframe', reframeRouter);
 router.use('/checkins', checkinsRouter);
 router.use('/notifications', notificationsRouter);
 

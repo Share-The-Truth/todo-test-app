@@ -9,12 +9,17 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.120.0",
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
     "express": "^4.21.0",
     "pg": "^8.13.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.48.0",
     "@testcontainers/postgresql": "^11.12.0",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cookie-parser": "^1.4.10",
     "@types/express": "^5.0.0",
     "@types/pg": "^8.11.0",
     "testcontainers": "^11.12.0",

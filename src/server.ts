@@ -3,6 +3,8 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import pool from './db.js';
 import { migrate } from './migrate.js';
+import { migrateFamily } from './family/migrations.js';
+import familyRouter from './family/router.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -10,6 +12,7 @@ const __dirname = dirname(__filename);
 const app = express();
 app.use(express.json());
 app.use(express.static(join(__dirname, '..', 'public')));
+app.use('/api/family', familyRouter);
 
 // GET /api/todos - list all todos
 app.get('/api/todos', async (_req, res) => {
@@ -63,6 +66,7 @@ const PORT = parseInt(process.env.PORT || '3005');
 
 async function start() {
   await migrate();
+  await migrateFamily();
   app.listen(PORT, () => {
     console.log(`Todo app listening on port ${PORT}`);
   });
